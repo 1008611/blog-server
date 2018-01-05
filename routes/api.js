@@ -96,7 +96,7 @@ router.post('/admin/article', (req, res) => {
             title: req.body.title,
             content: content,
             state: req.body.state,
-            subtitle: content.trim().substr(0, 15) + '...'
+            subtitle: content.trim().replace(/#/g, '').substr(0, 15) + '...'
         }
         models.Articles.findByIdAndUpdate(id, updatestr, (err, data) => {
             if (err) {
