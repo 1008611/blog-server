@@ -96,7 +96,7 @@ router.post('/admin/article', (req, res) => {
             title: req.body.title,
             content: content,
             state: req.body.state,
-            subtitle: content.trim().replace(/#/g, '').substr(0, 15) + '...'
+            subtitle: content.trim().replace(/#/g, '   ').trim().substr(0, 40) + '...'
         }
         models.Articles.findByIdAndUpdate(id, updatestr, (err, data) => {
             if (err) {
@@ -111,7 +111,7 @@ router.post('/admin/article', (req, res) => {
             content: content,
             state: req.body.state,
             publishTime: date,
-            subtitle: content.substr(0, 15) + '...'
+            subtitle: content.trim().replace(/#/g, '   ').trim().substr(0, 40) + '...'
         })
         Article.save((err, data) => {
             if (err) {
