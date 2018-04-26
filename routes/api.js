@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var models = require('./db');
 var moment = require('moment')
+var superagent = require('superagent')
+var cheerio = require('cheerio')
 
 /************** 创建(create) 读取(get) 更新(update) 删除(delete) **************/
 
@@ -158,6 +160,33 @@ router.delete('/admin/:article_id', (req, res) => {
             res.json({code: 200, data: data, message: '删除成功'});
         }
     });
+});
+
+
+// 获取每日一句英语
+router.get('/one', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    let base_url = 'http://www.dailyenglishquote.com/'
+    superagent.get(base_url)
+        .end((err, result) => {
+            if (err) {
+                return next(err)
+            } else {
+                let $ = cheerio.load(result.text)
+                let items = []
+
+                $('#content .post').each((ids, ele) => {
+                    console.log($(ele))
+                    let $element = $(ele);
+                    items.push({
+                        text: $element.find('.entry  p').text().trim(),
+                    })
+                })
+                // res.send(items)
+                res.json({code: 200, data: items, message: '删除成功'});
+            }
+        })
+
 });
 
 module.exports = router;
