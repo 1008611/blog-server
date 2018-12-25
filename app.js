@@ -11,6 +11,7 @@ var api = require('./routes/api');
 var book = require('./routes/book');
 var jianshu = require('./routes/jianshu');
 var huxiu = require('./routes/huxiu');
+var laifu = require('./routes/laifudao');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use('/api', api);
 app.use('/book', book);
 app.use('/jianshu', jianshu);
 app.use('/huxiu', huxiu);
+app.use('/laifu', laifu);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
