@@ -12,7 +12,6 @@ let base_url = 'http://www.laifudao.com/'
 
 router.get('/', (req, res, next) => {
     Promise.all(arr).then(data => {
-
         res.send(data)
     })
 });

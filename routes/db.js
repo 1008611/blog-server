@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 // 连接数据库 如果不自己创建 默认test数据库会自动生成
 // mongoose.connect('mongodb://127.0.0.1:27017'); // 地址跟第一步的地址对应。
-mongoose.connect('mongodb://wangzhe:wangzhe@ds133627.mlab.com:33627/wangzhe'); //
+mongoose.connect('mongodb://wangzhe:wangzhe@ds133627.mlab.com:33627/wangzhe',{useNewUrlParser:true}); //
 
 // 为这次连接绑定事件
 const db = mongoose.connection;

@@ -5,6 +5,12 @@ var nodemailer = require('nodemailer')
 let cheerio = require('cheerio')
 let superagent = require('superagent')
 let Crawler = require('crawler')
+/* GET home page. */
+router.get('/', function (req, res, next) {
+    // res.render('index', { title: 'Express' });
+    res.send('book api');
+});
+
 /* GET users listing. */
 router.get('/jianshu', function (req, res, next) {
     let base_url = 'https://www.jianshu.com'
